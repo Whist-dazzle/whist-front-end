@@ -22,6 +22,13 @@ function Card(value, name, suit) {
 
 ## Rules
 
+Game:
+  * First team to 21 points wins
+  * Each game consists of a number of hands
+    * Hands are typically worth 3-6 points each
+
+
+
 ### Betting
 
 ### Basic Play
