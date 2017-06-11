@@ -23,6 +23,16 @@ class Deck {
     }
   }
 
+  shuffleDeck() {
+    for (var i = 0; i < this.cards.length; i++) {
+      let array = this.cards;
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
 }
 
 let suits = ['Spades', 'Hearts', 'Clubs', 'Diamonds'];
@@ -31,4 +41,6 @@ let names = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'T
 
 var myDeck = new Deck(suits, values, names);
 myDeck.createDeck();
-console.log(myDeck.cards);
+// console.log(myDeck.cards);
+myDeck.shuffleDeck(this.cards);
+console.log(myDeck.cards)
