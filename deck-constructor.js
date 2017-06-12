@@ -35,13 +35,15 @@ class Deck {
 
   dealCards(p1, p2, p3, p4, kitty) {
     let cards = this.cards;
-    for (var i = 0; i < 12; i++) {
+    let playerHandSize = 12;
+    let kittySize = 4;
+    for (var i = 0; i < playerHandSize; i++) {
       p1.push(cards.pop());
       p2.push(cards.pop());
       p3.push(cards.pop());
       p4.push(cards.pop());
     }
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < kittySize; i++) {
       kitty.push(cards.pop());
     }
   }
@@ -67,9 +69,10 @@ let kitty = [];
 
 myDeck.createDeck();
 myDeck.shuffleDeck();
-console.log(myDeck.cards);
+// console.log(myDeck.cards);
+// console.log(myDeck.cards);
 myDeck.dealCards(playerOne.cards, playerTwo.cards, playerThree.cards, playerFour.cards, kitty);
-console.log(myDeck.cards);
+// console.log(myDeck.cards);
 // console.log('p1cards:', playerOne.cards);
 // console.log('p2cards:', playerTwo.cards);
 // console.log(playerTwo.cards.length);
