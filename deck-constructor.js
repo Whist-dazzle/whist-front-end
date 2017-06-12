@@ -24,23 +24,53 @@ class Deck {
   }
 
   shuffleDeck() {
-    for (var i = 0; i < this.cards.length; i++) {
-      let array = this.cards;
+    let cards = this.cards;
+    for (var i = 0; i < cards.length; i++) {
       let j = Math.floor(Math.random() * (i + 1));
-      let temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      let temp = cards[i];
+      cards[i] = cards[j];
+      cards[j] = temp;
     }
   }
 
+  dealCards(p1, p2, p3, p4, kitty) {
+    let cards = this.cards;
+    for (var i = 0; i < 12; i++) {
+      p1.push(cards.pop());
+      p2.push(cards.pop());
+      p3.push(cards.pop());
+      p4.push(cards.pop());
+    }
+    for (var i = 0; i < 4; i++) {
+      kitty.push(cards.pop());
+    }
+  }
+
+}
+
+class Player {
+  constructor(cards) {
+    this.cards = cards;
+  }
 }
 
 let suits = ['Spades', 'Hearts', 'Clubs', 'Diamonds'];
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 let names = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
 
-var myDeck = new Deck(suits, values, names);
+let myDeck = new Deck(suits, values, names);
+let playerOne = new Player([]);
+let playerTwo = new Player([]);
+let playerThree = new Player([]);
+let playerFour = new Player([]);
+let kitty = [];
+
 myDeck.createDeck();
-// console.log(myDeck.cards);
-myDeck.shuffleDeck(this.cards);
-console.log(myDeck.cards)
+myDeck.shuffleDeck();
+console.log(myDeck.cards);
+myDeck.dealCards(playerOne.cards, playerTwo.cards, playerThree.cards, playerFour.cards, kitty);
+console.log(myDeck.cards);
+// console.log('p1cards:', playerOne.cards);
+// console.log('p2cards:', playerTwo.cards);
+// console.log(playerTwo.cards.length);
+// console.log(kitty);
