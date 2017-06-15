@@ -73,23 +73,39 @@ class Player {
   }
 }
 
+// class Game {
+//   constructor(players) {
+//     this.players = players;
+//   }
+// }
+
 let suits = ['Spades', 'Hearts', 'Clubs', 'Diamonds'];
 let suitNums = [1, 2, 3, 4];
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 let names = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
 
 let myDeck = new Deck(suits, values, names);
-let playerOne = new Player([]);
-let playerTwo = new Player([]);
-let playerThree = new Player([]);
-let playerFour = new Player([]);
+let p1 = new Player([]);
+let p2 = new Player([]);
+let p3 = new Player([]);
+let p4 = new Player([]);
+let players = [p1, p2, p3, p4];
+// let game = new Game(players);
 let kitty = [];
 
 myDeck.createDeck();
 myDeck.shuffleDeck();
-myDeck.dealCards(playerOne.cards, playerTwo.cards, playerThree.cards, playerFour.cards, kitty);
+myDeck.dealCards(p1.cards, p2.cards, p3.cards, p4.cards, kitty);
 
+//Sort cards for all players
+players.forEach(function(player) {
+  player.sortCards();
+});
 
-playerOne.sortCards();
+// let p1 = game.players[0];
+// let p2 = game.players[1];
+// let p3 = game.players[2];
+// let p4 = game.players[3];
 
-console.log('P1CARDS-SORTED:', playerOne.cards);
+console.log('P1CARDS-SORTED:', p1.cards);
+// console.log('P2CARDS-SORTED:', p2.cards);
