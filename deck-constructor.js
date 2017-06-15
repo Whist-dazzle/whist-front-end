@@ -129,7 +129,7 @@ $(document).ready(function() {
 });
 
 function appendHand($div, cards) {
-  cards.forEach(function(card) {
-    $div.append(`<p>${card.fullName}</p>`);
+  cards.forEach(function(card, i) {
+    $div.append(`<p>${i + 1}. ${card.fullName}</p>`);
   });
 }
