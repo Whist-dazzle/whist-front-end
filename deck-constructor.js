@@ -111,6 +111,25 @@ players.forEach(function(player) {
 // console.log('P1CARDS-SORTED:', p1.cards);
 // console.log('P2CARDS-SORTED:', p2.cards);
 
-// $(document).ready(function() {
-//
-// });
+$(document).ready(function() {
+  console.log('Hey Fam');
+
+  let $p1Hand = $('div.p1-hand');
+  let $p2Hand = $('div.p2-hand');
+  let $p3Hand = $('div.p3-hand');
+  let $p4Hand = $('div.p4-hand');
+  // let hands = [$p1Hand, $p2Hand, $p3Hand, $p4Hand];
+  let $hands = $('div.hand');
+
+  appendHand($p1Hand, p1.cards);
+  appendHand($p2Hand, p2.cards);
+  appendHand($p3Hand, p3.cards);
+  appendHand($p4Hand, p4.cards);
+
+});
+
+function appendHand($div, cards) {
+  cards.forEach(function(card) {
+    $div.append(`<p>${card.fullName}</p>`);
+  });
+}
