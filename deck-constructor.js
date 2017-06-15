@@ -1,8 +1,9 @@
 class Card {
-  constructor(value, name, suit) {
+  constructor(value, name, suit, suitNum) {
     this.value = value;
     this.name = name;
     this.suit = suit;
+    this.suitNum = suitNum;
     this.fullName = `${name} of ${suit}`;
   }
 }
@@ -18,7 +19,7 @@ class Deck {
   createDeck() {
     for (var i = 0; i < this.suits.length; i++) {
       for (var j = 0; j < this.values.length; j++) {
-        this.cards.push(new Card(values[j], names[j], suits[i]));
+        this.cards.push(new Card(values[j], names[j], suits[i], suitNums[i]));
       }
     }
   }
@@ -54,9 +55,26 @@ class Player {
   constructor(cards) {
     this.cards = cards;
   }
+
+  sortCards() {
+    let cards = this.cards;
+
+    function compare(x, y){
+      return x > y ? 1 : x < y ? -1 : 0;
+    };
+
+    cards.sort(function(a, b){
+      //note the minus before -cmp, for descending order
+      return compare(
+        [compare(a.suitNum, b.suitNum), -compare(a.value, b.value)],
+        [compare(b.suitNum, a.suitNum), -compare(b.value, a.value)]
+      );
+    });
+  }
 }
 
 let suits = ['Spades', 'Hearts', 'Clubs', 'Diamonds'];
+let suitNums = [1, 2, 3, 4];
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 let names = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
 
@@ -69,11 +87,9 @@ let kitty = [];
 
 myDeck.createDeck();
 myDeck.shuffleDeck();
-// console.log(myDeck.cards);
-// console.log(myDeck.cards);
 myDeck.dealCards(playerOne.cards, playerTwo.cards, playerThree.cards, playerFour.cards, kitty);
-// console.log(myDeck.cards);
-// console.log('p1cards:', playerOne.cards);
-// console.log('p2cards:', playerTwo.cards);
-// console.log(playerTwo.cards.length);
-// console.log(kitty);
+
+
+playerOne.sortCards();
+
+console.log('P1CARDS-SORTED:', playerOne.cards);
