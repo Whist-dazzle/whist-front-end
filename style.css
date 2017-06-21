@@ -2,9 +2,15 @@
   box-sizing: border-box;
 }
 
-main {
+.hands {
   display: flex;
   justify-content: space-around;
+}
+
+.current-play {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
 }
 
 div.hand {

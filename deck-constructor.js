@@ -74,6 +74,21 @@ class Player {
   }
 }
 
+class Round {
+  constructor(players) {
+    this.players = players;
+    this.team1 = [players[0], players[2]];
+    this.team2 = [players[1], players[3]];
+    this.bets = [];
+    this.trump = '';
+    this.team1tricks = 0;
+    this.team2tricks = 0;
+    this.tricksPlayed = 0;
+    this.currentTrick = [];
+
+  }
+}
+
 // class Game {
 //   constructor(players) {
 //     this.players = players;
@@ -118,18 +133,74 @@ $(document).ready(function() {
   let $p2Hand = $('div.p2-hand');
   let $p3Hand = $('div.p3-hand');
   let $p4Hand = $('div.p4-hand');
-  // let hands = [$p1Hand, $p2Hand, $p3Hand, $p4Hand];
-  let $hands = $('div.hand');
+
+  let $p1Play = $('div.p1-play');
+  let $p2Play = $('div.p2-play');
+  let $p3Play = $('div.p3-play');
+  let $p4Play = $('div.p4-play');
+
 
   appendHand($p1Hand, p1.cards);
   appendHand($p2Hand, p2.cards);
   appendHand($p3Hand, p3.cards);
   appendHand($p4Hand, p4.cards);
 
+  // Game variables
+  let team1Score = 0;
+  let team2score = 0;
+  let currentRound = 0;
+
+  // Round variables
+  let roundBets = [];
+  let trump = '';
+  let currentTrick = [];
+  let tricksPlayed = 0;
+
+
+  // Round setup (betting, kitty, trump call)
+
+  let round = new Round(players)
+
+  window.setTimeout(function() {
+    makeBets(round.players, round.bets);
+    console.log(round);
+  }, 1000);
+
+
+
+
+  // callTrump();
+
+  // One round of play
+  while (tricksPlayed < 12) {
+
+    tricksPlayed++;
+  }
+
 });
 
 function appendHand($div, cards) {
+  $div.empty();
   cards.forEach(function(card, i) {
-    $div.append(`<p>${i + 1}. ${card.fullName}</p>`);
+    $div.append(`<p>${i}. ${card.fullName}</p>`);
   });
 }
+
+function appendPlay($div, card) {
+  $div.empty();
+  $div.append(`<p>${card.fullName}</p>`)
+}
+
+function makeBets(players, bets) {
+  players.forEach(function(player, i) {
+    let bet = prompt(`Player ${i + 1}, what is your bet?`);
+    bet = parseInt(bet);
+    bets.push(bet);
+    console.log(`Player ${i + 1} bet:`, bet);
+    console.log('Bets array:', bets);
+  });
+}
+
+// function callTrump() {
+//
+// }
